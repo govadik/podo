@@ -3,35 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1E3D31">
+    <meta name="theme-color" content="#5B9A9A">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Подолог Анастасия — Кабинет подологии в Минске</title>
+    <title>Кабинет подологии — Анастасия | Минск</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2D5A4A;
-            --primary-light: #4A8B73;
-            --primary-dark: #1E3D31;
-            --accent: #D4A574;
-            --accent-light: #E8C9A8;
-            --bg: #F7F5F2;
-            --bg-warm: #EDE9E3;
-            --text: #2C2C2C;
-            --text-light: #6B6B6B;
+            --primary: #5B9A9A;
+            --primary-light: #7BB8B8;
+            --primary-dark: #3D7A7A;
+            --primary-soft: rgba(91, 154, 154, 0.08);
+            --accent: #C4A882;
+            --accent-light: #D9C9A8;
+            --bg: #F0F4F4;
+            --bg-card: #FFFFFF;
+            --bg-warm: #E8EEED;
+            --text: #2C3E3E;
+            --text-light: #5E7A7A;
+            --text-muted: #8FA8A8;
             --white: #FFFFFF;
-            --glass: rgba(255, 255, 255, 0.78);
-            --glass-border: rgba(255, 255, 255, 0.45);
-            --shadow: 0 8px 32px rgba(45, 90, 74, 0.12);
-            --shadow-lg: 0 20px 60px rgba(45, 90, 74, 0.18);
+            --glass: rgba(255, 255, 255, 0.82);
+            --glass-border: rgba(255, 255, 255, 0.55);
+            --shadow: 0 4px 24px rgba(91, 154, 154, 0.10);
+            --shadow-lg: 0 12px 40px rgba(91, 154, 154, 0.15);
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
             overflow-x: hidden;
@@ -40,79 +43,50 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-60px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(60px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.85); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-8px); }
-            40% { transform: translateX(8px); }
-            60% { transform: translateX(-4px); }
-            80% { transform: translateX(4px); }
-        }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+        @keyframes pulse-soft { 0%, 100% { box-shadow: 0 0 0 0 rgba(91, 154, 154, 0.3); } 50% { box-shadow: 0 0 0 12px rgba(91, 154, 154, 0); } }
 
         .animate { opacity: 0; }
-        .animate.visible { animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .animate-left.visible { animation: slideInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .animate-right.visible { animation: slideInRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .animate-scale.visible { animation: scaleIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .delay-1 { animation-delay: 0.15s; }
-        .delay-2 { animation-delay: 0.3s; }
-        .delay-3 { animation-delay: 0.45s; }
-        .delay-4 { animation-delay: 0.6s; }
+        .animate.visible { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .animate-left.visible { animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .animate-right.visible { animation: slideInRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .animate-scale.visible { animation: scaleIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .delay-1 { animation-delay: 0.12s; }
+        .delay-2 { animation-delay: 0.24s; }
+        .delay-3 { animation-delay: 0.36s; }
+        .delay-4 { animation-delay: 0.48s; }
 
         /* ===== NAVIGATION ===== */
         .nav {
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 1000;
-            padding: 18px 5%;
-            padding-top: calc(18px + var(--safe-top));
+            padding: 16px 5%;
+            padding-top: calc(16px + var(--safe-top));
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: all 0.4s ease;
         }
         .nav.scrolled {
-            background: rgba(247, 245, 242, 0.92);
+            background: rgba(240, 244, 244, 0.92);
             backdrop-filter: blur(20px) saturate(1.2);
             -webkit-backdrop-filter: blur(20px) saturate(1.2);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 1px 16px rgba(91, 154, 154, 0.08);
             padding: 12px 5%;
             padding-top: calc(12px + var(--safe-top));
         }
         .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-family: 'Noto Serif', serif;
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--primary-dark);
             text-decoration: none;
@@ -120,7 +94,7 @@
             align-items: center;
             gap: 10px;
         }
-        .nav-logo svg { width: 30px; height: 30px; }
+        .nav-logo svg { width: 32px; height: 32px; }
         .nav-links {
             display: flex;
             gap: 32px;
@@ -132,7 +106,7 @@
             color: var(--text);
             font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
             position: relative;
             padding: 6px 0;
             transition: color 0.3s;
@@ -146,7 +120,7 @@
             transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover { color: var(--primary-dark); }
         .nav-cta {
             background: var(--primary);
             color: var(--white) !important;
@@ -157,19 +131,14 @@
             white-space: nowrap;
         }
         .nav-cta::after { display: none !important; }
-        .nav-cta:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(45, 90, 74, 0.3);
-        }
+        .nav-cta:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(91, 154, 154, 0.3); }
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
             padding: 10px;
-            width: 48px;
-            height: 48px;
+            width: 48px; height: 48px;
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -177,11 +146,10 @@
             border-radius: 12px;
             transition: background 0.2s;
         }
-        .mobile-menu-btn:active { background: rgba(0,0,0,0.05); }
+        .mobile-menu-btn:active { background: rgba(0,0,0,0.04); }
         .mobile-menu-btn span {
             display: block;
-            width: 24px;
-            height: 2.5px;
+            width: 24px; height: 2.5px;
             background: var(--text);
             border-radius: 2px;
             transition: all 0.3s;
@@ -205,27 +173,26 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #E8DDD4 0%, #D4E5DD 30%, #C8DED4 60%, #E5DDD4 100%);
+            background: linear-gradient(160deg, #E0EAE9 0%, #D4E5E4 25%, #C8DDD8 50%, #E2E8E5 75%, #E8EEED 100%);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientShift 20s ease infinite;
         }
         .hero-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232D5A4A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.6;
+            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235B9A9A' fill-opacity='0.025'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         .hero-blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: float 8s ease-in-out infinite;
+            filter: blur(90px);
+            opacity: 0.35;
+            animation: float 10s ease-in-out infinite;
         }
-        .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,165,116,0.4), transparent 70%); top: -10%; right: -5%; }
-        .blob-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(74,139,115,0.3), transparent 70%); bottom: -10%; left: -5%; animation-delay: -4s; }
-        .blob-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(212,165,116,0.25), transparent 70%); top: 40%; left: 30%; animation-delay: -2s; }
+        .blob-1 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(91,154,154,0.35), transparent 70%); top: -15%; right: -5%; }
+        .blob-2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(196,168,130,0.25), transparent 70%); bottom: -10%; left: -5%; animation-delay: -5s; }
+        .blob-3 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(91,154,154,0.2), transparent 70%); top: 45%; left: 25%; animation-delay: -3s; }
         .hero-content {
             position: relative;
             z-index: 2;
@@ -237,16 +204,16 @@
             align-items: center;
         }
         .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 5vw, 4.2rem);
+            font-family: 'Noto Serif', serif;
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
             font-weight: 700;
-            line-height: 1.12;
+            line-height: 1.15;
             color: var(--primary-dark);
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
-        .hero-text h1 span { color: var(--primary-light); font-style: italic; }
+        .hero-text h1 span { color: var(--primary); font-style: italic; }
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-light);
             margin-bottom: 32px;
             max-width: 480px;
@@ -255,7 +222,7 @@
         .hero-badges {
             display: flex;
             gap: 12px;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             flex-wrap: wrap;
         }
         .badge {
@@ -266,7 +233,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            padding: 10px 16px;
+            padding: 10px 18px;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 500;
@@ -274,11 +241,7 @@
             box-shadow: var(--shadow);
         }
         .badge svg { width: 16px; height: 16px; color: var(--primary); flex-shrink: 0; }
-        .hero-cta-group {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
+        .hero-cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
         .btn {
             display: inline-flex;
             align-items: center;
@@ -292,7 +255,7 @@
             cursor: pointer;
             border: none;
             transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
             min-height: 52px;
             -webkit-appearance: none;
             appearance: none;
@@ -302,21 +265,22 @@
         .btn-primary {
             background: var(--primary);
             color: var(--white);
-            box-shadow: 0 8px 28px rgba(45, 90, 74, 0.3);
+            box-shadow: 0 8px 24px rgba(91, 154, 154, 0.3);
         }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 14px 40px rgba(45, 90, 74, 0.4); }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(91, 154, 154, 0.4); }
         .btn-secondary {
-            background: transparent;
+            background: var(--white);
             color: var(--primary-dark);
-            border: 2px solid rgba(45, 90, 74, 0.2);
+            border: 1.5px solid rgba(91, 154, 154, 0.2);
+            box-shadow: 0 2px 12px rgba(91, 154, 154, 0.06);
         }
-        .btn-secondary:hover { border-color: var(--primary); background: rgba(45, 90, 74, 0.05); transform: translateY(-3px); }
+        .btn-secondary:hover { border-color: var(--primary); background: var(--white); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(91, 154, 154, 0.12); }
         .btn-telegram {
-            background: #0088cc;
+            background: var(--primary);
             color: var(--white);
-            box-shadow: 0 8px 28px rgba(0, 136, 204, 0.3);
+            box-shadow: 0 8px 24px rgba(91, 154, 154, 0.3);
         }
-        .btn-telegram:hover { background: #0077b3; transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0, 136, 204, 0.4); }
+        .btn-telegram:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(91, 154, 154, 0.4); }
         .hero-visual {
             position: relative;
             display: flex;
@@ -329,7 +293,7 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--glass-border);
             border-radius: 28px;
-            padding: 36px 28px;
+            padding: 36px 30px;
             box-shadow: var(--shadow-lg);
             max-width: 380px;
             width: 100%;
@@ -339,8 +303,10 @@
         .hero-card-header {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(91, 154, 154, 0.1);
         }
         .hero-avatar {
             width: 60px; height: 60px;
@@ -350,20 +316,20 @@
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-family: 'Playfair Display', serif;
+            font-family: 'Noto Serif', serif;
             font-size: 1.5rem;
             font-weight: 600;
-            box-shadow: 0 6px 20px rgba(45, 90, 74, 0.25);
+            box-shadow: 0 6px 18px rgba(91, 154, 154, 0.25);
             flex-shrink: 0;
         }
-        .hero-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--primary-dark); }
-        .hero-card-subtitle { font-size: 0.8rem; color: var(--text-light); margin-top: 2px; }
-        .hero-card-info { display: flex; flex-direction: column; gap: 12px; }
+        .hero-card-title { font-family: 'Noto Serif', serif; font-size: 1.25rem; font-weight: 600; color: var(--primary-dark); }
+        .hero-card-subtitle { font-size: 0.82rem; color: var(--text-light); margin-top: 2px; }
+        .hero-card-info { display: flex; flex-direction: column; gap: 14px; }
         .info-row {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            font-size: 0.85rem;
+            gap: 12px;
+            font-size: 0.88rem;
             color: var(--text);
         }
         .info-row svg { width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; margin-top: 2px; }
@@ -372,62 +338,61 @@
         .hero-floating-tag {
             position: absolute;
             background: var(--white);
-            padding: 10px 16px;
+            padding: 10px 18px;
             border-radius: 14px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
             font-size: 0.78rem;
             font-weight: 600;
             color: var(--primary-dark);
             display: flex;
             align-items: center;
             gap: 8px;
-            animation: float 6s ease-in-out infinite;
+            animation: float 7s ease-in-out infinite;
             z-index: 3;
             white-space: nowrap;
         }
-        .tag-1 { top: 8%; right: -10px; animation-delay: -1s; }
-        .tag-2 { bottom: 12%; left: -20px; animation-delay: -3s; }
-        .tag-3 { top: 48%; right: -30px; animation-delay: -5s; }
+        .tag-1 { top: 5%; right: -10px; animation-delay: -1s; }
+        .tag-2 { bottom: 10%; left: -20px; animation-delay: -4s; }
+        .tag-3 { top: 50%; right: -30px; animation-delay: -6s; }
         .hero-floating-tag svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
 
-        /* ===== SECTIONS COMMON ===== */
-        section { padding: 100px 5%; }
+        section { padding: 90px 5%; }
         .section-header {
             text-align: center;
             max-width: 640px;
-            margin: 0 auto 60px;
+            margin: 0 auto 50px;
             padding: 0 16px;
         }
         .section-label {
             display: inline-block;
             font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--primary);
             margin-bottom: 14px;
             padding: 6px 16px;
-            background: rgba(45, 90, 74, 0.08);
+            background: var(--primary-soft);
             border-radius: 50px;
         }
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-family: 'Noto Serif', serif;
+            font-size: clamp(1.7rem, 3.5vw, 2.8rem);
             font-weight: 700;
             color: var(--primary-dark);
             line-height: 1.2;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .section-desc { font-size: 1rem; color: var(--text-light); }
 
         /* ===== ABOUT ===== */
-        .about { background: var(--white); position: relative; }
+        .about { background: var(--bg-card); position: relative; }
         .about-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 70px;
+            gap: 60px;
             align-items: center;
         }
         .about-visual { position: relative; }
@@ -437,7 +402,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-lg);
             aspect-ratio: 4/5;
-            background: linear-gradient(135deg, var(--bg-warm), var(--bg));
+            background: linear-gradient(160deg, #E0EAE9, #D8E4E3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -446,34 +411,34 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(45,90,74,0.08) 100%);
+            background: linear-gradient(180deg, transparent 60%, rgba(91,154,154,0.06) 100%);
             z-index: 1;
         }
         .about-img-content { text-align: center; padding: 40px; z-index: 2; }
-        .about-img-content svg { width: 100px; height: 100px; color: var(--primary-light); opacity: 0.3; margin-bottom: 20px; }
-        .about-img-content p { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--primary-dark); opacity: 0.6; }
+        .about-img-content svg { width: 90px; height: 90px; color: var(--primary); opacity: 0.25; margin-bottom: 20px; }
+        .about-img-content p { font-family: 'Noto Serif', serif; font-size: 1.2rem; color: var(--primary-dark); opacity: 0.5; }
         .about-experience {
             position: absolute;
-            bottom: -20px;
-            right: -20px;
+            bottom: -18px;
+            right: -18px;
             background: var(--primary);
             color: var(--white);
-            padding: 24px 28px;
+            padding: 22px 26px;
             border-radius: 18px;
             box-shadow: var(--shadow-lg);
             text-align: center;
             z-index: 3;
         }
-        .about-experience .num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; line-height: 1; }
-        .about-experience .label { font-size: 0.78rem; opacity: 0.85; margin-top: 4px; font-weight: 500; }
-        .about-text h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 18px; }
-        .about-text p { color: var(--text-light); margin-bottom: 18px; font-size: 0.95rem; }
-        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+        .about-experience .num { font-family: 'Noto Serif', serif; font-size: 2.4rem; font-weight: 700; line-height: 1; }
+        .about-experience .label { font-size: 0.75rem; opacity: 0.85; margin-top: 4px; font-weight: 500; }
+        .about-text h3 { font-family: 'Noto Serif', serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 16px; }
+        .about-text p { color: var(--text-light); margin-bottom: 16px; font-size: 0.95rem; }
+        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
         .about-feature { display: flex; align-items: flex-start; gap: 12px; }
         .about-feature-icon {
-            width: 42px; height: 42px;
+            width: 40px; height: 40px;
             border-radius: 12px;
-            background: rgba(45, 90, 74, 0.08);
+            background: var(--primary-soft);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -490,14 +455,14 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
         .service-card {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: 24px;
-            padding: 36px 28px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.03);
+            padding: 32px 24px;
+            box-shadow: 0 2px 16px rgba(91, 154, 154, 0.04);
+            border: 1px solid rgba(91, 154, 154, 0.06);
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             position: relative;
             overflow: hidden;
@@ -506,33 +471,65 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             transform: scaleX(0);
             transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
         .service-card:hover::before { transform: scaleX(1); }
         .service-icon {
-            width: 56px; height: 56px;
+            width: 52px; height: 52px;
             border-radius: 16px;
-            background: linear-gradient(135deg, rgba(45,90,74,0.08), rgba(45,90,74,0.03));
+            background: var(--primary-soft);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             transition: all 0.3s;
         }
         .service-card:hover .service-icon { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
-        .service-icon svg { width: 26px; height: 26px; color: var(--primary); transition: color 0.3s; }
+        .service-icon svg { width: 24px; height: 24px; color: var(--primary); transition: color 0.3s; }
         .service-card:hover .service-icon svg { color: var(--white); }
-        .service-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 10px; }
-        .service-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.7; }
-        .service-price { margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06); font-size: 0.88rem; font-weight: 600; color: var(--primary); }
+        .service-card h3 { font-family: 'Noto Serif', serif; font-size: 1.05rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 10px; }
+        .service-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.65; }
+        .service-price { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(91, 154, 154, 0.08); font-size: 0.88rem; font-weight: 600; color: var(--primary); }
+
+        /* ===== WHY US ===== */
+        .why-us { background: var(--bg-card); }
+        .why-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .why-card {
+            text-align: center;
+            padding: 32px 20px;
+            border-radius: 24px;
+            background: var(--bg);
+            transition: all 0.4s;
+            border: 1px solid transparent;
+        }
+        .why-card:hover { background: var(--bg-card); border-color: rgba(91,154,154,0.08); box-shadow: var(--shadow); transform: translateY(-5px); }
+        .why-icon {
+            width: 60px; height: 60px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 6px 20px rgba(91, 154, 154, 0.18);
+        }
+        .why-icon svg { width: 26px; height: 26px; color: var(--white); }
+        .why-card h3 { font-family: 'Noto Serif', serif; font-size: 0.95rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px; }
+        .why-card p { font-size: 0.82rem; color: var(--text-light); line-height: 1.55; }
 
         /* ===== BOOKING ===== */
         .booking {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -540,9 +537,9 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        .booking-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; }
+        .booking-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.12; }
         .booking-blob-1 { width: 500px; height: 500px; background: var(--accent); top: -20%; right: -10%; }
         .booking-blob-2 { width: 400px; height: 400px; background: var(--accent-light); bottom: -20%; left: -10%; }
         .booking-inner {
@@ -555,35 +552,35 @@
             gap: 50px;
             align-items: center;
         }
-        .booking-info .section-label { background: rgba(255,255,255,0.12); color: var(--accent-light); }
-        .booking-info .section-title { color: var(--white); text-align: left; margin-bottom: 16px; }
-        .booking-info .section-desc { color: rgba(255,255,255,0.75); text-align: left; margin-bottom: 32px; }
-        .booking-contacts { display: flex; flex-direction: column; gap: 14px; }
+        .booking-info .section-label { background: rgba(255,255,255,0.1); color: var(--accent-light); }
+        .booking-info .section-title { color: var(--white); text-align: left; margin-bottom: 14px; }
+        .booking-info .section-desc { color: rgba(255,255,255,0.7); text-align: left; margin-bottom: 32px; }
+        .booking-contacts { display: flex; flex-direction: column; gap: 12px; }
         .booking-contact {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.06);
             backdrop-filter: blur(10px);
             padding: 14px 18px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: all 0.3s;
             text-decoration: none;
         }
-        .booking-contact:hover { background: rgba(255,255,255,0.14); transform: translateX(6px); }
+        .booking-contact:hover { background: rgba(255,255,255,0.12); transform: translateX(5px); }
         .booking-contact-icon {
-            width: 42px; height: 42px;
+            width: 40px; height: 40px;
             border-radius: 12px;
-            background: rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
         .booking-contact-icon svg { width: 18px; height: 18px; color: var(--accent-light); }
-        .booking-contact-text h4 { font-size: 0.8rem; color: rgba(255,255,255,0.6); font-weight: 500; margin-bottom: 2px; }
-        .booking-contact-text span { font-size: 0.95rem; color: var(--white); font-weight: 600; }
+        .booking-contact-text h4 { font-size: 0.78rem; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 2px; }
+        .booking-contact-text span { font-size: 0.92rem; color: var(--white); font-weight: 600; }
 
         .booking-form-wrap {
             background: var(--glass);
@@ -591,15 +588,15 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--glass-border);
             border-radius: 28px;
-            padding: 40px 36px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            padding: 36px 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
-        .booking-form-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 6px; }
-        .booking-form-wrap > p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 24px; }
-        .form-group { margin-bottom: 18px; }
+        .booking-form-wrap h3 { font-family: 'Noto Serif', serif; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 6px; }
+        .booking-form-wrap > p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 22px; }
+        .form-group { margin-bottom: 16px; }
         .form-group label {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: var(--text);
             margin-bottom: 6px;
@@ -609,12 +606,12 @@
         .form-group textarea {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid rgba(45, 90, 74, 0.1);
+            border: 1.5px solid rgba(91, 154, 154, 0.12);
             border-radius: 14px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 16px;
             color: var(--text);
-            background: var(--white);
+            background: var(--bg-card);
             transition: all 0.3s;
             outline: none;
             -webkit-appearance: none;
@@ -624,19 +621,19 @@
         .form-group select:focus,
         .form-group textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(45, 90, 74, 0.08);
+            box-shadow: 0 0 0 4px rgba(91, 154, 154, 0.08);
         }
-        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .form-submit { width: 100%; margin-top: 6px; justify-content: center; font-size: 1rem; padding: 16px; }
         .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
         .form-success {
             display: none;
             text-align: center;
-            padding: 30px 16px;
+            padding: 24px 16px;
         }
-        .form-success svg { width: 56px; height: 56px; color: var(--primary); margin-bottom: 16px; }
-        .form-success h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 8px; }
+        .form-success svg { width: 52px; height: 52px; color: var(--primary); margin-bottom: 14px; }
+        .form-success h3 { font-family: 'Noto Serif', serif; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 8px; }
         .form-success p { color: var(--text-light); font-size: 0.9rem; }
         .form-error {
             display: none;
@@ -649,63 +646,31 @@
             font-weight: 500;
         }
 
-        /* ===== WHY US ===== */
-        .why-us { background: var(--white); }
-        .why-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        .why-card {
-            text-align: center;
-            padding: 36px 20px;
-            border-radius: 24px;
-            background: var(--bg);
-            transition: all 0.4s;
-            border: 1px solid transparent;
-        }
-        .why-card:hover { background: var(--white); border-color: rgba(45,90,74,0.1); box-shadow: var(--shadow); transform: translateY(-6px); }
-        .why-icon {
-            width: 64px; height: 64px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 18px;
-            box-shadow: 0 8px 24px rgba(45, 90, 74, 0.2);
-        }
-        .why-icon svg { width: 28px; height: 28px; color: var(--white); }
-        .why-card h3 { font-size: 1rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px; }
-        .why-card p { font-size: 0.82rem; color: var(--text-light); line-height: 1.6; }
-
-        /* ===== CONTACTS / MAP ===== */
+        /* ===== CONTACTS ===== */
         .contacts { background: var(--bg); }
         .contacts-inner {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1.3fr;
-            gap: 40px;
+            gap: 36px;
             align-items: stretch;
         }
-        .contacts-info { display: flex; flex-direction: column; gap: 18px; }
+        .contacts-info { display: flex; flex-direction: column; gap: 16px; }
         .contact-card {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.03);
+            padding: 22px;
+            box-shadow: 0 2px 16px rgba(91, 154, 154, 0.04);
+            border: 1px solid rgba(91, 154, 154, 0.05);
             transition: all 0.3s;
         }
-        .contact-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+        .contact-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
         .contact-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
         .contact-card-icon {
             width: 44px; height: 44px;
             border-radius: 14px;
-            background: rgba(45, 90, 74, 0.08);
+            background: var(--primary-soft);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -713,35 +678,35 @@
         }
         .contact-card-icon svg { width: 20px; height: 20px; color: var(--primary); }
         .contact-card-header h4 { font-size: 0.95rem; font-weight: 600; color: var(--primary-dark); }
-        .contact-card-body { font-size: 0.88rem; color: var(--text-light); line-height: 1.8; }
+        .contact-card-body { font-size: 0.88rem; color: var(--text-light); line-height: 1.75; }
         .contact-card-body a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
         .contact-card-body a:hover { color: var(--primary-dark); text-decoration: underline; }
         .contact-card-body strong { color: var(--text); font-weight: 600; }
 
         .map-wrap {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: 24px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.03);
+            border: 1px solid rgba(91, 154, 154, 0.05);
             position: relative;
         }
         .map-wrap iframe {
             width: 100%;
             height: 100%;
-            min-height: 460px;
+            min-height: 440px;
             border: none;
-            filter: grayscale(0.2) contrast(1.05);
+            filter: grayscale(0.15) contrast(1.02) saturate(0.9);
         }
         .map-badge {
             position: absolute;
             bottom: 16px;
             left: 16px;
             right: 16px;
-            background: var(--white);
+            background: var(--bg-card);
             padding: 14px 16px;
             border-radius: 14px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -754,38 +719,38 @@
         .footer {
             background: var(--primary-dark);
             color: var(--white);
-            padding: 60px 5% 30px;
-            padding-bottom: calc(30px + var(--safe-bottom));
+            padding: 50px 5% 24px;
+            padding-bottom: calc(24px + var(--safe-bottom));
         }
         .footer-inner {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 40px;
-            padding-bottom: 36px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            gap: 36px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-        .footer-brand h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 12px; }
-        .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 300px; }
-        .footer-col h4 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; color: var(--accent-light); }
+        .footer-brand h3 { font-family: 'Noto Serif', serif; font-size: 1.4rem; margin-bottom: 10px; }
+        .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 300px; }
+        .footer-col h4 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; color: var(--accent-light); }
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 8px; }
-        .footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-col a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
         .footer-col a:hover { color: var(--white); }
         .footer-phone { display: flex; flex-direction: column; gap: 10px; }
         .footer-phone a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.2s; }
         .footer-phone a:hover { color: var(--accent-light); }
-        .footer-phone span { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+        .footer-phone span { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
         .footer-bottom {
             max-width: 1200px;
             margin: 0 auto;
-            padding-top: 20px;
+            padding-top: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.78rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.35);
         }
 
         /* ===== SCROLL TO TOP ===== */
@@ -794,8 +759,8 @@
             bottom: 24px;
             right: 24px;
             bottom: calc(24px + var(--safe-bottom));
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             background: var(--primary);
             color: var(--white);
@@ -804,7 +769,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(45, 90, 74, 0.3);
+            box-shadow: 0 6px 18px rgba(91, 154, 154, 0.3);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s;
@@ -820,7 +785,7 @@
         .mobile-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.35);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             z-index: 998;
@@ -835,34 +800,29 @@
             width: 80%; max-width: 320px;
             height: 100vh;
             height: 100dvh;
-            background: var(--white);
+            background: var(--bg-card);
             z-index: 999;
             padding: 100px 28px 28px;
             padding-top: calc(100px + var(--safe-top));
             transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.08);
             overflow-y: auto;
         }
         .mobile-nav.active { right: 0; }
         .mobile-nav ul { list-style: none; }
-        .mobile-nav li { margin-bottom: 8px; }
+        .mobile-nav li { margin-bottom: 6px; }
         .mobile-nav a {
             display: block;
             text-decoration: none;
             color: var(--text);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             transition: all 0.2s;
             padding: 12px 16px;
             border-radius: 12px;
         }
-        .mobile-nav a:hover { color: var(--primary); background: rgba(45,90,74,0.05); }
-        .mobile-nav .nav-cta {
-            display: inline-block;
-            margin-top: 10px;
-            width: 100%;
-            text-align: center;
-        }
+        .mobile-nav a:hover { color: var(--primary); background: var(--primary-soft); }
+        .mobile-nav .nav-cta { display: inline-block; margin-top: 10px; width: 100%; text-align: center; }
         .mobile-close {
             position: absolute;
             top: 24px; right: 24px;
@@ -879,10 +839,10 @@
             border-radius: 12px;
             transition: background 0.2s;
         }
-        .mobile-close:active { background: rgba(0,0,0,0.05); }
+        .mobile-close:active { background: rgba(0,0,0,0.04); }
         .mobile-close svg { width: 24px; height: 24px; color: var(--text); }
 
-        /* ===== FLOATING CALL BUTTON (MOBILE) ===== */
+        /* ===== FLOATING CALL BUTTON ===== */
         .fab-call {
             display: none;
             position: fixed;
@@ -898,7 +858,7 @@
             cursor: pointer;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(45, 90, 74, 0.35);
+            box-shadow: 0 6px 20px rgba(91, 154, 154, 0.3);
             z-index: 998;
             text-decoration: none;
             -webkit-appearance: none;
@@ -910,14 +870,14 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; gap: 50px; }
-            .hero-text h1 { margin: 0 auto 22px; }
+            .hero-text h1 { margin: 0 auto 20px; }
             .hero-subtitle { margin: 0 auto 32px; }
             .hero-badges { justify-content: center; }
             .hero-cta-group { justify-content: center; }
             .hero-visual { order: -1; }
             .hero-card { margin: 0 auto; }
             .about-grid { grid-template-columns: 1fr; gap: 50px; }
-            .about-visual { max-width: 480px; margin: 0 auto; width: 100%; }
+            .about-visual { max-width: 460px; margin: 0 auto; width: 100%; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .booking-inner { grid-template-columns: 1fr; gap: 40px; }
             .why-grid { grid-template-columns: repeat(2, 1fr); }
@@ -947,11 +907,11 @@
             .fab-call { display: flex; }
             .map-wrap iframe { min-height: 280px; }
             .contact-card { padding: 20px; }
-            .section-header { margin-bottom: 40px; }
+            .section-header { margin-bottom: 36px; }
         }
         @media (max-width: 380px) {
-            .hero-text h1 { font-size: 1.9rem; }
-            .hero-card { padding: 28px 20px; }
+            .hero-text h1 { font-size: 1.8rem; }
+            .hero-card { padding: 24px 18px; }
             .about-experience { padding: 14px 18px; }
             .about-experience .num { font-size: 1.8rem; }
             .btn { padding: 14px 24px; font-size: 0.9rem; }
@@ -964,11 +924,11 @@
 <!-- Navigation -->
 <nav class="nav" id="nav">
     <a href="#" class="nav-logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
-        Подолог Анастасия
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z"/><path d="M16 10v6l4 2"/><path d="M12 20c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z"/></svg>
+        Кабинет подологии
     </a>
     <ul class="nav-links">
-        <li><a href="#about">О специалисте</a></li>
+        <li><a href="#about">О нас</a></li>
         <li><a href="#services">Услуги</a></li>
         <li><a href="#booking">Запись</a></li>
         <li><a href="#contacts">Контакты</a></li>
@@ -983,7 +943,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <ul>
-        <li><a href="#about" class="mobile-link">О специалисте</a></li>
+        <li><a href="#about" class="mobile-link">О нас</a></li>
         <li><a href="#services" class="mobile-link">Услуги</a></li>
         <li><a href="#booking" class="mobile-link">Запись</a></li>
         <li><a href="#contacts" class="mobile-link">Контакты</a></li>
@@ -999,16 +959,20 @@
     <div class="hero-blob blob-3"></div>
     <div class="hero-content">
         <div class="hero-text">
-            <h1>Забота о ваших <span>ногах</span> — это забота о здоровье</h1>
-            <p class="hero-subtitle">Профессиональная подологическая помощь в Минске. Лечение грибка, вросших ногтей, мозолей и других проблем стоп.</p>
+            <h1>Профессиональный уход за <span>стопами и ногтями</span></h1>
+            <p class="hero-subtitle">Кабинет подологии в Минске. Лечение вросших ногтей, грибка, мозолей, трещин. Медицинский педикюр и консультация подолога.</p>
             <div class="hero-badges">
                 <div class="badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    Сертифицированный специалист
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Безопасно
                 </div>
                 <div class="badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    Онлайн-запись 24/7
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Стерильно
+                </div>
+                <div class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Эффективно
                 </div>
             </div>
             <div class="hero-cta-group">
@@ -1034,7 +998,7 @@
                 <div class="hero-card-info">
                     <div class="info-row">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        <span>Минск, ул. Маяковского, 111<br>офис 301, этаж 3</span>
+                        <span>г. Минск, ул. Маяковского, 111<br>3 этаж, каб. 301</span>
                     </div>
                     <div class="info-row">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -1051,16 +1015,16 @@
                 </div>
             </div>
             <div class="hero-floating-tag tag-1">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-                500+ довольных клиентов
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Специалисты с мед. образованием
             </div>
             <div class="hero-floating-tag tag-2">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 Индивидуальный подход
             </div>
             <div class="hero-floating-tag tag-3">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Стерильность и безопасность
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Возвращаем комфорт
             </div>
         </div>
     </div>
@@ -1072,7 +1036,7 @@
         <div class="about-visual animate-left">
             <div class="about-img-frame">
                 <div class="about-img-content">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="3"/></svg>
                     <p>Кабинет подологии<br>«Подолог Анастасия»</p>
                 </div>
             </div>
@@ -1083,13 +1047,13 @@
         </div>
         <div class="about-text animate-right">
             <span class="section-label">О специалисте</span>
-            <h2 class="section-title" style="text-align:left; margin-bottom: 18px;">Профессиональный подолог с медицинским образованием</h2>
-            <p>Анастасия — сертифицированный подолог с медицинским образованием и многолетним опытом работы. В кабинете используется только современное оборудование и одноразовые расходные материалы.</p>
+            <h2 class="section-title" style="text-align:left; margin-bottom: 16px;">Специалисты с медицинским образованием</h2>
+            <p>Анастасия — сертифицированный подолог с медицинским образованием. В кабинете используется только современное оборудование и одноразовые расходные материалы.</p>
             <p>Каждому клиенту подбирается индивидуальный план лечения. Работа ведётся в строгом соответствии с санитарно-эпидемиологическими нормами.</p>
             <div class="about-features">
                 <div class="about-feature">
                     <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div class="about-feature-text">
                         <h4>Сертификаты</h4>
@@ -1098,7 +1062,7 @@
                 </div>
                 <div class="about-feature">
                     <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div class="about-feature-text">
                         <h4>Стерильность</h4>
@@ -1107,7 +1071,7 @@
                 </div>
                 <div class="about-feature">
                     <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div class="about-feature-text">
                         <h4>Удобное время</h4>
@@ -1116,7 +1080,7 @@
                 </div>
                 <div class="about-feature">
                     <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div class="about-feature-text">
                         <h4>Забота</h4>
@@ -1132,7 +1096,7 @@
 <section class="services" id="services">
     <div class="section-header animate">
         <span class="section-label">Услуги</span>
-        <h2 class="section-title">Полный спектр подологических услуг</h2>
+        <h2 class="section-title">Помогаем при проблемах</h2>
         <p class="section-desc">Профессиональный уход за стопами с использованием современных методик</p>
     </div>
     <div class="services-grid">
@@ -1140,7 +1104,7 @@
             <div class="service-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
             </div>
-            <h3>Лечение вросшего ногтя</h3>
+            <h3>Вросший ноготь</h3>
             <p>Безболезненная коррекция вросшего ногтя с использованием современных техник. Предотвращение рецидивов.</p>
             <div class="service-price">от 35 BYN</div>
         </div>
@@ -1148,7 +1112,7 @@
             <div class="service-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <h3>Лечение грибка ногтей</h3>
+            <h3>Грибок ногтей</h3>
             <p>Комплексная терапия онихомикоза с применением аппаратных методов и специальных препаратов.</p>
             <div class="service-price">от 40 BYN</div>
         </div>
@@ -1156,7 +1120,7 @@
             <div class="service-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
             </div>
-            <h3>Удаление мозолей и натоптышей</h3>
+            <h3>Мозоли и натоптыши</h3>
             <p>Безопасное аппаратное удаление мозолей, натоптышей и сухих мозолей без боли.</p>
             <div class="service-price">от 30 BYN</div>
         </div>
@@ -1165,14 +1129,14 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
             <h3>Медицинский педикюр</h3>
-            <p>Профессиональный уход за ногтями и кожей стоп с медицинской точки зрения.</p>
+            <p>Профессиональный уход за ногтями и кожей стоп без покрытия. Идеально при диабете.</p>
             <div class="service-price">от 45 BYN</div>
         </div>
         <div class="service-card animate delay-2">
             <div class="service-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             </div>
-            <h3>Коррекция трещин на пятках</h3>
+            <h3>Трещины на пятках</h3>
             <p>Лечение глубоких и поверхностных трещин. Восстановление эластичности кожи.</p>
             <div class="service-price">от 35 BYN</div>
         </div>
@@ -1180,9 +1144,9 @@
             <div class="service-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
-            <h3>Ортопедические стельки</h3>
-            <p>Индивидуальные стельки по слепку для коррекции деформаций стопы.</p>
-            <div class="service-price">от 120 BYN</div>
+            <h3>Консультация подолога</h3>
+            <p>Осмотр, диагностика состояния стоп и ногтей, рекомендации по лечению и уходу.</p>
+            <div class="service-price">от 25 BYN</div>
         </div>
     </div>
 </section>
@@ -1191,34 +1155,34 @@
 <section class="why-us" id="why">
     <div class="section-header animate">
         <span class="section-label">Почему мы</span>
-        <h2 class="section-title">Доверьте заботу о своих ногах профессионалам</h2>
-        <p class="section-desc">Мы создали пространство, где ваш комфорт и здоровье — на первом месте</p>
+        <h2 class="section-title">Мы возвращаем комфорт и здоровье вашим стопам</h2>
+        <p class="section-desc">Доверьте заботу о своих ногах профессионалам</p>
     </div>
     <div class="why-grid">
         <div class="why-card animate delay-1">
             <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <h3>Опыт и квалификация</h3>
-            <p>Медицинское образование и регулярное повышение квалификации</p>
+            <h3>Мед. образование</h3>
+            <p>Сертифицированные специалисты с медицинским образованием</p>
         </div>
         <div class="why-card animate delay-2">
             <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <h3>Полная стерильность</h3>
-            <p>Одноразовые материалы и тщательная дезинфекция инструментов</p>
+            <h3>Стерильность</h3>
+            <p>Одноразовые материалы и тщательная дезинфекция</p>
         </div>
         <div class="why-card animate delay-3">
             <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <h3>Удобная запись</h3>
-            <p>Онлайн-запись в любое время и напоминания о приёме</p>
+            <p>Онлайн-запись в любое время</p>
         </div>
         <div class="why-card animate delay-4">
             <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <h3>Индивидуальный подход</h3>
             <p>Персональный план лечения для каждого клиента</p>
@@ -1260,7 +1224,7 @@
                     </div>
                     <div class="booking-contact-text">
                         <h4>Адрес</h4>
-                        <span>Минск, ул. Маяковского, 111, офис 301</span>
+                        <span>Минск, ул. Маяковского, 111, каб. 301</span>
                     </div>
                 </div>
             </div>
@@ -1286,13 +1250,12 @@
                             <label for="service">Услуга *</label>
                             <select id="service" name="service" required>
                                 <option value="" disabled selected>Выберите услугу</option>
-                                <option value="Лечение вросшего ногтя">Лечение вросшего ногтя</option>
-                                <option value="Лечение грибка">Лечение грибка</option>
-                                <option value="Удаление мозолей">Удаление мозолей / натоптышей</option>
+                                <option value="Вросший ноготь">Вросший ноготь</option>
+                                <option value="Грибок ногтей">Грибок ногтей</option>
+                                <option value="Мозоли и натоптыши">Мозоли и натоптыши</option>
                                 <option value="Медицинский педикюр">Медицинский педикюр</option>
                                 <option value="Трещины на пятках">Трещины на пятках</option>
-                                <option value="Ортопедические стельки">Ортопедические стельки</option>
-                                <option value="Консультация">Консультация</option>
+                                <option value="Консультация подолога">Консультация подолога</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -1324,7 +1287,7 @@
     <div class="section-header animate">
         <span class="section-label">Контакты</span>
         <h2 class="section-title">Приходите в гости</h2>
-        <p class="section-desc">Удобное расположение в центре Минска, рядом со станцией метро</p>
+        <p class="section-desc">Удобное расположение в центре Минска</p>
     </div>
     <div class="contacts-inner">
         <div class="contacts-info">
@@ -1337,7 +1300,7 @@
                 </div>
                 <div class="contact-card-body">
                     <strong>г. Минск, ул. Маяковского, 111</strong><br>
-                    Офис 301, 3-й этаж<br>
+                    3 этаж, кабинет 301<br>
                     <span style="font-size:0.8rem; color:var(--text-light);">Вход со двора, домофон 301</span>
                 </div>
             </div>
@@ -1372,7 +1335,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.6!2d27.55!3d53.90!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfe0c0e1b0a1%3A0x0!2z0JzQuNC90YHQug!5e0!3m2!1sru!2sby!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div class="map-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Минск, ул. Маяковского, 111 — офис 301, 3 этаж</span>
+                <span>Минск, ул. Маяковского, 111 — каб. 301, 3 этаж</span>
             </div>
         </div>
     </div>
@@ -1382,13 +1345,13 @@
 <footer class="footer">
     <div class="footer-inner">
         <div class="footer-brand">
-            <h3>Подолог Анастасия</h3>
-            <p>Профессиональный кабинет подологии в Минске. Забота о здоровье ваших ног — наша главная задача.</p>
+            <h3>Кабинет подологии</h3>
+            <p>Профессиональный уход за стопами и ногтями в Минске. Мы возвращаем комфорт и здоровье вашим стопам.</p>
         </div>
         <div class="footer-col">
             <h4>Навигация</h4>
             <ul>
-                <li><a href="#about">О специалисте</a></li>
+                <li><a href="#about">О нас</a></li>
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#booking">Запись</a></li>
                 <li><a href="#contacts">Контакты</a></li>
@@ -1400,7 +1363,7 @@
                 <li><a href="#services">Вросший ноготь</a></li>
                 <li><a href="#services">Грибок ногтей</a></li>
                 <li><a href="#services">Медицинский педикюр</a></li>
-                <li><a href="#services">Ортопедические стельки</a></li>
+                <li><a href="#services">Консультация</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -1414,7 +1377,7 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <span>© 2026 Кабинет подологии «Подолог Анастасия». Все права защищены.</span>
+        <span>© 2026 Кабинет подологии. Все права защищены.</span>
         <span>Минск, ул. Маяковского, 111</span>
     </div>
 </footer>
@@ -1432,20 +1395,20 @@
 // ============================================================
 // НАСТРОЙКА ОТПРАВКИ ФОРМ
 // ============================================================
-// 1. TELEGRAM: 
+// 1. TELEGRAM:
 //    - Напишите @BotFather в Telegram, создайте бота, получите TOKEN
 //    - Напишите боту любое сообщение, затем откройте в браузере:
 //      https://api.telegram.org/botВАШ_ТОКЕН/getUpdates
 //    - Найдите "chat":{"id":123456789 — это ваш CHAT_ID
 //    - Вставьте значения ниже:
-const TELEGRAM_BOT_TOKEN = ''; // например: '123456789:ABCdefGHIjklMNOpqrSTUvwxyz'
-const TELEGRAM_CHAT_ID   = ''; // например: '123456789'
+const TELEGRAM_BOT_TOKEN = '';
+const TELEGRAM_CHAT_ID   = '';
 
 // 2. EMAIL (через Formspree):
 //    - Зарегистрируйтесь на https://formspree.io
 //    - Создайте новую форму, получите endpoint вида: https://formspree.io/f/XXXXXXXX
 //    - Вставьте ниже:
-const FORMSPREE_ENDPOINT = ''; // например: 'https://formspree.io/f/xnqkvpzy'
+const FORMSPREE_ENDPOINT = '';
 
 // ============================================================
 
@@ -1472,9 +1435,7 @@ dateInput.setAttribute('min', today);
 const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -40px 0px' };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, observerOptions);
 document.querySelectorAll('.animate, .animate-left, .animate-right, .animate-scale').forEach(el => observer.observe(el));
@@ -1565,7 +1526,7 @@ bookingForm.addEventListener('submit', async function(e) {
     let telegramOk = false;
     let formspreeOk = false;
 
-    // === ОТПРАВКА В TELEGRAM (если настроен токен) ===
+    // === ОТПРАВКА В TELEGRAM ===
     if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
         const text = `📋 <b>Новая запись на приём</b>
 
@@ -1587,7 +1548,7 @@ bookingForm.addEventListener('submit', async function(e) {
         } catch (err) {}
     }
 
-    // === ОТПРАВКА НА EMAIL (если настроен Formspree) ===
+    // === ОТПРАВКА НА EMAIL ===
     if (FORMSPREE_ENDPOINT) {
         try {
             const resp = await fetch(FORMSPREE_ENDPOINT, {
@@ -1599,7 +1560,7 @@ bookingForm.addEventListener('submit', async function(e) {
         } catch (err) {}
     }
 
-    // === УСПЕХ: тихая отправка ===
+    // === УСПЕХ ===
     if (telegramOk || formspreeOk) {
         formContainer.style.display = 'none';
         formSuccess.style.display = 'block';
@@ -1614,7 +1575,7 @@ bookingForm.addEventListener('submit', async function(e) {
         return;
     }
 
-    // === FALLBACK: открываем Telegram с готовым сообщением ===
+    // === FALLBACK: открываем Telegram ===
     submitBtn.innerHTML = originalHTML;
     submitBtn.disabled = false;
 
@@ -1623,12 +1584,10 @@ bookingForm.addEventListener('submit', async function(e) {
 👤 Имя: ${data.name}
 📞 Телефон: ${data.phone}
 📋 Услуга: ${data.service}
-📅 Дата: ${data.date}${data.notes ? '
-💬 Комментарий: ' + data.notes : ''}`;
+📅 Дата: ${data.date}${data.notes ? '\n💬 Комментарий: ' + data.notes : ''}`;
 
     const tgUrl = 'https://t.me/+375291251085?text=' + encodeURIComponent(msg);
 
-    // Показываем инструкцию
     formContainer.style.display = 'none';
     formSuccess.style.display = 'block';
     formSuccess.innerHTML = `
@@ -1643,8 +1602,6 @@ bookingForm.addEventListener('submit', async function(e) {
         <button onclick="resetForm()" style="background:none; border:none; color:var(--text-light); font-size:0.85rem; cursor:pointer; text-decoration:underline; font-family:inherit">← Вернуться к форме</button>
     `;
     formSuccess.style.animation = 'fadeUp 0.6s ease forwards';
-
-    // Автооткрытие Telegram
     setTimeout(() => { window.open(tgUrl, '_blank'); }, 600);
 });
 
@@ -1665,7 +1622,7 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Hide FAB call on scroll down, show on scroll up
+// Hide FAB call on scroll down
 let lastScroll = 0;
 const fabCall = document.getElementById('fabCall');
 window.addEventListener('scroll', () => {
