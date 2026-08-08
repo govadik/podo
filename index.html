@@ -2,1639 +2,855 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#5B9A9A">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кабинет подологии — Анастасия | Минск</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5B9A9A;
-            --primary-light: #7BB8B8;
-            --primary-dark: #3D7A7A;
-            --primary-soft: rgba(91, 154, 154, 0.08);
-            --accent: #C4A882;
-            --accent-light: #D9C9A8;
-            --bg: #F0F4F4;
-            --bg-card: #FFFFFF;
-            --bg-warm: #E8EEED;
-            --text: #2C3E3E;
-            --text-light: #5E7A7A;
-            --text-muted: #8FA8A8;
-            --white: #FFFFFF;
-            --glass: rgba(255, 255, 255, 0.82);
-            --glass-border: rgba(255, 255, 255, 0.55);
-            --shadow: 0 4px 24px rgba(91, 154, 154, 0.10);
-            --shadow-lg: 0 12px 40px rgba(91, 154, 154, 0.15);
-            --safe-top: env(safe-area-inset-top, 0px);
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --primary: #4a8a90;
+            --primary-dark: #3d7378;
+            --primary-light: #e8f1f2;
+            --accent: #5a9aa0;
+            --text: #2c3e50;
+            --text-light: #5a6b7b;
+            --bg: #f4f8f9;
+            --white: #ffffff;
+            --shadow: rgba(74, 138, 144, 0.1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            font-family: 'Montserrat', sans-serif;
             color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            background: var(--bg);
+            line-height: 1.6;
         }
 
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
-        @keyframes pulse-soft { 0%, 100% { box-shadow: 0 0 0 0 rgba(91, 154, 154, 0.3); } 50% { box-shadow: 0 0 0 12px rgba(91, 154, 154, 0); } }
-
-        .animate { opacity: 0; }
-        .animate.visible { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .animate-left.visible { animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .animate-right.visible { animation: slideInRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .animate-scale.visible { animation: scaleIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .delay-1 { animation-delay: 0.12s; }
-        .delay-2 { animation-delay: 0.24s; }
-        .delay-3 { animation-delay: 0.36s; }
-        .delay-4 { animation-delay: 0.48s; }
-
-        /* ===== NAVIGATION ===== */
-        .nav {
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 20px var(--shadow);
             position: fixed;
-            top: 0; left: 0; right: 0;
+            width: 100%;
+            top: 0;
             z-index: 1000;
-            padding: 16px 5%;
-            padding-top: calc(16px + var(--safe-top));
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.4s ease;
         }
-        .nav.scrolled {
-            background: rgba(240, 244, 244, 0.92);
-            backdrop-filter: blur(20px) saturate(1.2);
-            -webkit-backdrop-filter: blur(20px) saturate(1.2);
-            box-shadow: 0 1px 16px rgba(91, 154, 154, 0.08);
-            padding: 12px 5%;
-            padding-top: calc(12px + var(--safe-top));
-        }
-        .nav-logo {
-            font-family: 'Noto Serif', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            text-decoration: none;
+
+        .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary);
         }
-        .nav-logo svg { width: 32px; height: 32px; }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+        }
+
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 2rem;
             list-style: none;
-            align-items: center;
         }
+
         .nav-links a {
             text-decoration: none;
             color: var(--text);
-            font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 0.01em;
-            position: relative;
-            padding: 6px 0;
+            font-size: 0.95rem;
             transition: color 0.3s;
         }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 0; height: 2px;
-            background: var(--accent);
-            transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--primary-dark); }
-        .nav-cta {
+
+        .btn {
             background: var(--primary);
-            color: var(--white) !important;
-            padding: 10px 22px !important;
-            border-radius: 50px;
-            font-weight: 600 !important;
-            transition: all 0.3s ease !important;
-            white-space: nowrap;
-        }
-        .nav-cta::after { display: none !important; }
-        .nav-cta:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(91, 154, 154, 0.3); }
-        .mobile-menu-btn {
-            display: none;
-            background: none;
+            color: var(--white);
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
             border: none;
             cursor: pointer;
-            padding: 10px;
-            width: 48px; height: 48px;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 5px;
-            border-radius: 12px;
-            transition: background 0.2s;
-        }
-        .mobile-menu-btn:active { background: rgba(0,0,0,0.04); }
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px; height: 2.5px;
-            background: var(--text);
-            border-radius: 2px;
             transition: all 0.3s;
+            display: inline-block;
         }
-        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
-        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        /* ===== HERO ===== */
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 138, 144, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+            padding: 5rem 2rem;
             position: relative;
             overflow: hidden;
-            padding: 120px 5% 80px;
-            padding-top: calc(120px + var(--safe-top));
         }
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(160deg, #E0EAE9 0%, #D4E5E4 25%, #C8DDD8 50%, #E2E8E5 75%, #E8EEED 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
-        }
-        .hero-bg::before {
+
+        .hero::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235B9A9A' fill-opacity='0.025'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        .hero-blob {
-            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(74,138,144,0.08) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.35;
-            animation: float 10s ease-in-out infinite;
         }
-        .blob-1 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(91,154,154,0.35), transparent 70%); top: -15%; right: -5%; }
-        .blob-2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(196,168,130,0.25), transparent 70%); bottom: -10%; left: -5%; animation-delay: -5s; }
-        .blob-3 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(91,154,154,0.2), transparent 70%); top: 45%; left: 25%; animation-delay: -3s; }
-        .hero-content {
-            position: relative;
-            z-index: 2;
+
+        .hero-container {
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
-        .hero-text h1 {
-            font-family: 'Noto Serif', serif;
-            font-size: clamp(2rem, 4.5vw, 3.6rem);
+
+        .hero-content h1 {
+            font-size: 2.8rem;
             font-weight: 700;
-            line-height: 1.15;
-            color: var(--primary-dark);
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--text);
         }
-        .hero-text h1 span { color: var(--primary); font-style: italic; }
-        .hero-subtitle {
-            font-size: 1.05rem;
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
             color: var(--text-light);
-            margin-bottom: 32px;
-            max-width: 480px;
-            font-weight: 400;
+            margin-bottom: 2rem;
+            max-width: 500px;
         }
+
         .hero-badges {
             display: flex;
-            gap: 12px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
+
         .badge {
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            padding: 10px 18px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--primary-dark);
-            box-shadow: var(--shadow);
-        }
-        .badge svg { width: 16px; height: 16px; color: var(--primary); flex-shrink: 0; }
-        .hero-cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 0.95rem;
+            gap: 0.5rem;
             font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            letter-spacing: 0.01em;
-            min-height: 52px;
-            -webkit-appearance: none;
-            appearance: none;
-            touch-action: manipulation;
+            color: var(--primary);
+            font-size: 0.9rem;
         }
-        .btn:active { transform: scale(0.97); }
-        .btn-primary {
-            background: var(--primary);
-            color: var(--white);
-            box-shadow: 0 8px 24px rgba(91, 154, 154, 0.3);
+
+        .badge svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2.5;
         }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(91, 154, 154, 0.4); }
-        .btn-secondary {
-            background: var(--white);
-            color: var(--primary-dark);
-            border: 1.5px solid rgba(91, 154, 154, 0.2);
-            box-shadow: 0 2px 12px rgba(91, 154, 154, 0.06);
-        }
-        .btn-secondary:hover { border-color: var(--primary); background: var(--white); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(91, 154, 154, 0.12); }
-        .btn-telegram {
-            background: var(--primary);
-            color: var(--white);
-            box-shadow: 0 8px 24px rgba(91, 154, 154, 0.3);
-        }
-        .btn-telegram:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(91, 154, 154, 0.4); }
-        .hero-visual {
-            position: relative;
+
+        .hero-buttons {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        .hero-card {
-            background: var(--glass);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 36px 30px;
-            box-shadow: var(--shadow-lg);
-            max-width: 380px;
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
             width: 100%;
-            position: relative;
-            z-index: 2;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(74, 138, 144, 0.15);
         }
-        .hero-card-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 28px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(91, 154, 154, 0.1);
+
+        .hero-card {
+            position: absolute;
+            bottom: -20px;
+            left: -30px;
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(74, 138, 144, 0.12);
         }
-        .hero-avatar {
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-family: 'Noto Serif', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            box-shadow: 0 6px 18px rgba(91, 154, 154, 0.25);
-            flex-shrink: 0;
+
+        .hero-card h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
         }
-        .hero-card-title { font-family: 'Noto Serif', serif; font-size: 1.25rem; font-weight: 600; color: var(--primary-dark); }
-        .hero-card-subtitle { font-size: 0.82rem; color: var(--text-light); margin-top: 2px; }
-        .hero-card-info { display: flex; flex-direction: column; gap: 14px; }
-        .info-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 0.88rem;
+
+        .hero-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             color: var(--text);
         }
-        .info-row svg { width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; margin-top: 2px; }
-        .info-row a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-        .info-row a:hover { color: var(--primary-dark); text-decoration: underline; }
-        .hero-floating-tag {
-            position: absolute;
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About */
+        .about {
             background: var(--white);
-            padding: 10px 18px;
-            border-radius: 14px;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: float 7s ease-in-out infinite;
-            z-index: 3;
-            white-space: nowrap;
         }
-        .tag-1 { top: 5%; right: -10px; animation-delay: -1s; }
-        .tag-2 { bottom: 10%; left: -20px; animation-delay: -4s; }
-        .tag-3 { top: 50%; right: -30px; animation-delay: -6s; }
-        .hero-floating-tag svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
 
-        section { padding: 90px 5%; }
-        .section-header {
-            text-align: center;
-            max-width: 640px;
-            margin: 0 auto 50px;
-            padding: 0 16px;
-        }
-        .section-label {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 14px;
-            padding: 6px 16px;
-            background: var(--primary-soft);
-            border-radius: 50px;
-        }
-        .section-title {
-            font-family: 'Noto Serif', serif;
-            font-size: clamp(1.7rem, 3.5vw, 2.8rem);
-            font-weight: 700;
-            color: var(--primary-dark);
-            line-height: 1.2;
-            margin-bottom: 12px;
-        }
-        .section-desc { font-size: 1rem; color: var(--text-light); }
-
-        /* ===== ABOUT ===== */
-        .about { background: var(--bg-card); position: relative; }
         .about-grid {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
         }
-        .about-visual { position: relative; }
-        .about-img-frame {
-            position: relative;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            aspect-ratio: 4/5;
-            background: linear-gradient(160deg, #E0EAE9, #D8E4E3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .about-img-frame::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 60%, rgba(91,154,154,0.06) 100%);
-            z-index: 1;
-        }
-        .about-img-content { text-align: center; padding: 40px; z-index: 2; }
-        .about-img-content svg { width: 90px; height: 90px; color: var(--primary); opacity: 0.25; margin-bottom: 20px; }
-        .about-img-content p { font-family: 'Noto Serif', serif; font-size: 1.2rem; color: var(--primary-dark); opacity: 0.5; }
-        .about-experience {
-            position: absolute;
-            bottom: -18px;
-            right: -18px;
-            background: var(--primary);
-            color: var(--white);
-            padding: 22px 26px;
-            border-radius: 18px;
-            box-shadow: var(--shadow-lg);
-            text-align: center;
-            z-index: 3;
-        }
-        .about-experience .num { font-family: 'Noto Serif', serif; font-size: 2.4rem; font-weight: 700; line-height: 1; }
-        .about-experience .label { font-size: 0.75rem; opacity: 0.85; margin-top: 4px; font-weight: 500; }
-        .about-text h3 { font-family: 'Noto Serif', serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 16px; }
-        .about-text p { color: var(--text-light); margin-bottom: 16px; font-size: 0.95rem; }
-        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-        .about-feature { display: flex; align-items: flex-start; gap: 12px; }
-        .about-feature-icon {
-            width: 40px; height: 40px;
-            border-radius: 12px;
-            background: var(--primary-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .about-feature-icon svg { width: 20px; height: 20px; color: var(--primary); }
-        .about-feature-text h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-        .about-feature-text p { font-size: 0.78rem; color: var(--text-light); margin: 0; }
 
-        /* ===== SERVICES ===== */
-        .services { background: var(--bg); }
+        .about-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary-light);
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-card .icon {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .about-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Services */
+        .services {
+            background: var(--bg);
+        }
+
         .services-grid {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 2rem;
         }
+
         .service-card {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 32px 24px;
-            box-shadow: 0 2px 16px rgba(91, 154, 154, 0.04);
-            border: 1px solid rgba(91, 154, 154, 0.06);
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 30px var(--shadow);
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
+
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
             transform: scaleX(0);
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.3s;
         }
-        .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-        .service-card:hover::before { transform: scaleX(1); }
-        .service-icon {
-            width: 52px; height: 52px;
-            border-radius: 16px;
-            background: var(--primary-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 18px;
-            transition: all 0.3s;
-        }
-        .service-card:hover .service-icon { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
-        .service-icon svg { width: 24px; height: 24px; color: var(--primary); transition: color 0.3s; }
-        .service-card:hover .service-icon svg { color: var(--white); }
-        .service-card h3 { font-family: 'Noto Serif', serif; font-size: 1.05rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 10px; }
-        .service-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.65; }
-        .service-price { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(91, 154, 154, 0.08); font-size: 0.88rem; font-weight: 600; color: var(--primary); }
 
-        /* ===== WHY US ===== */
-        .why-us { background: var(--bg-card); }
-        .why-grid {
-            max-width: 1200px;
-            margin: 0 auto;
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(74, 138, 144, 0.15);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Features */
+        .features {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+        }
+
+        .features .section-title h2,
+        .features .section-title p {
+            color: var(--white);
+        }
+
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 2rem;
+            margin-top: 3rem;
         }
-        .why-card {
+
+        .feature-item {
             text-align: center;
-            padding: 32px 20px;
-            border-radius: 24px;
-            background: var(--bg);
-            transition: all 0.4s;
-            border: 1px solid transparent;
+            padding: 1.5rem;
         }
-        .why-card:hover { background: var(--bg-card); border-color: rgba(91,154,154,0.08); box-shadow: var(--shadow); transform: translateY(-5px); }
-        .why-icon {
-            width: 60px; height: 60px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+
+        .feature-item .icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
-            box-shadow: 0 6px 20px rgba(91, 154, 154, 0.18);
-        }
-        .why-icon svg { width: 26px; height: 26px; color: var(--white); }
-        .why-card h3 { font-family: 'Noto Serif', serif; font-size: 0.95rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px; }
-        .why-card p { font-size: 0.82rem; color: var(--text-light); line-height: 1.55; }
-
-        /* ===== BOOKING ===== */
-        .booking {
-            background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .booking::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        .booking-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.12; }
-        .booking-blob-1 { width: 500px; height: 500px; background: var(--accent); top: -20%; right: -10%; }
-        .booking-blob-2 { width: 400px; height: 400px; background: var(--accent-light); bottom: -20%; left: -10%; }
-        .booking-inner {
-            position: relative;
-            z-index: 2;
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 50px;
-            align-items: center;
-        }
-        .booking-info .section-label { background: rgba(255,255,255,0.1); color: var(--accent-light); }
-        .booking-info .section-title { color: var(--white); text-align: left; margin-bottom: 14px; }
-        .booking-info .section-desc { color: rgba(255,255,255,0.7); text-align: left; margin-bottom: 32px; }
-        .booking-contacts { display: flex; flex-direction: column; gap: 12px; }
-        .booking-contact {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255,255,255,0.06);
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
             backdrop-filter: blur(10px);
-            padding: 14px 18px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.3s;
-            text-decoration: none;
         }
-        .booking-contact:hover { background: rgba(255,255,255,0.12); transform: translateX(5px); }
-        .booking-contact-icon {
-            width: 40px; height: 40px;
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Booking */
+        .booking {
+            background: var(--white);
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .booking-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .booking-info p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-item .icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
             border-radius: 12px;
-            background: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            color: var(--primary);
+            font-size: 1.2rem;
         }
-        .booking-contact-icon svg { width: 18px; height: 18px; color: var(--accent-light); }
-        .booking-contact-text h4 { font-size: 0.78rem; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 2px; }
-        .booking-contact-text span { font-size: 0.92rem; color: var(--white); font-weight: 600; }
 
-        .booking-form-wrap {
-            background: var(--glass);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 36px 32px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        .contact-item div strong {
+            display: block;
+            color: var(--text);
+            margin-bottom: 0.2rem;
         }
-        .booking-form-wrap h3 { font-family: 'Noto Serif', serif; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 6px; }
-        .booking-form-wrap > p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 22px; }
-        .form-group { margin-bottom: 16px; }
+
+        .contact-item div span {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .booking-form {
+            background: var(--primary-light);
+            padding: 3rem;
+            border-radius: 24px;
+        }
+
+        .booking-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-size: 1.4rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
         .form-group label {
             display: block;
-            font-size: 0.78rem;
-            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
             color: var(--text);
-            margin-bottom: 6px;
+            font-size: 0.9rem;
         }
+
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 14px 16px;
-            border: 1.5px solid rgba(91, 154, 154, 0.12);
-            border-radius: 14px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
+            padding: 1rem 1.2rem;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--white);
             color: var(--text);
-            background: var(--bg-card);
             transition: all 0.3s;
-            outline: none;
-            -webkit-appearance: none;
-            appearance: none;
         }
+
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
+            outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(91, 154, 154, 0.08);
-        }
-        .form-group textarea { resize: vertical; min-height: 80px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .form-submit { width: 100%; margin-top: 6px; justify-content: center; font-size: 1rem; padding: 16px; }
-        .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
-        .form-success {
-            display: none;
-            text-align: center;
-            padding: 24px 16px;
-        }
-        .form-success svg { width: 52px; height: 52px; color: var(--primary); margin-bottom: 14px; }
-        .form-success h3 { font-family: 'Noto Serif', serif; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 8px; }
-        .form-success p { color: var(--text-light); font-size: 0.9rem; }
-        .form-error {
-            display: none;
-            background: #FEE2E2;
-            color: #991B1B;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            margin-bottom: 16px;
-            font-weight: 500;
         }
 
-        /* ===== CONTACTS ===== */
-        .contacts { background: var(--bg); }
-        .contacts-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 36px;
-            align-items: stretch;
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
         }
-        .contacts-info { display: flex; flex-direction: column; gap: 16px; }
-        .contact-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 2px 16px rgba(91, 154, 154, 0.04);
-            border: 1px solid rgba(91, 154, 154, 0.05);
-            transition: all 0.3s;
-        }
-        .contact-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-        .contact-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-        .contact-card-icon {
-            width: 44px; height: 44px;
-            border-radius: 14px;
-            background: var(--primary-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .contact-card-icon svg { width: 20px; height: 20px; color: var(--primary); }
-        .contact-card-header h4 { font-size: 0.95rem; font-weight: 600; color: var(--primary-dark); }
-        .contact-card-body { font-size: 0.88rem; color: var(--text-light); line-height: 1.75; }
-        .contact-card-body a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-        .contact-card-body a:hover { color: var(--primary-dark); text-decoration: underline; }
-        .contact-card-body strong { color: var(--text); font-weight: 600; }
 
-        .map-wrap {
-            background: var(--bg-card);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(91, 154, 154, 0.05);
-            position: relative;
-        }
-        .map-wrap iframe {
+        .booking-form .btn {
             width: 100%;
-            height: 100%;
-            min-height: 440px;
-            border: none;
-            filter: grayscale(0.15) contrast(1.02) saturate(0.9);
+            padding: 1rem;
+            font-size: 1rem;
+            margin-top: 0.5rem;
         }
-        .map-badge {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            right: 16px;
-            background: var(--bg-card);
-            padding: 14px 16px;
-            border-radius: 14px;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 2;
-        }
-        .map-badge svg { width: 22px; height: 22px; color: var(--primary); flex-shrink: 0; }
-        .map-badge span { font-size: 0.85rem; font-weight: 500; color: var(--text); }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            background: var(--primary-dark);
+        /* Footer */
+        footer {
+            background: var(--text);
             color: var(--white);
-            padding: 50px 5% 24px;
-            padding-bottom: calc(24px + var(--safe-bottom));
-        }
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 36px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .footer-brand h3 { font-family: 'Noto Serif', serif; font-size: 1.4rem; margin-bottom: 10px; }
-        .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 300px; }
-        .footer-col h4 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; color: var(--accent-light); }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 8px; }
-        .footer-col a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--white); }
-        .footer-phone { display: flex; flex-direction: column; gap: 10px; }
-        .footer-phone a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.2s; }
-        .footer-phone a:hover { color: var(--accent-light); }
-        .footer-phone span { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.35);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
         }
 
-        /* ===== SCROLL TO TOP ===== */
-        .scroll-top {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            bottom: calc(24px + var(--safe-bottom));
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--primary);
+        footer .logo {
             color: var(--white);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 18px rgba(91, 154, 154, 0.3);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 999;
-            -webkit-appearance: none;
-            appearance: none;
+            margin-bottom: 1.5rem;
         }
-        .scroll-top.visible { opacity: 1; visibility: visible; }
-        .scroll-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
-        .scroll-top svg { width: 20px; height: 20px; }
 
-        /* ===== MOBILE MENU ===== */
-        .mobile-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.35);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
         }
-        .mobile-overlay.active { opacity: 1; visibility: visible; }
-        .mobile-nav {
-            position: fixed;
-            top: 0; right: -100%;
-            width: 80%; max-width: 320px;
-            height: 100vh;
-            height: 100dvh;
-            background: var(--bg-card);
-            z-index: 999;
-            padding: 100px 28px 28px;
-            padding-top: calc(100px + var(--safe-top));
-            transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: -10px 0 40px rgba(0,0,0,0.08);
-            overflow-y: auto;
-        }
-        .mobile-nav.active { right: 0; }
-        .mobile-nav ul { list-style: none; }
-        .mobile-nav li { margin-bottom: 6px; }
-        .mobile-nav a {
-            display: block;
-            text-decoration: none;
-            color: var(--text);
-            font-size: 1.05rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            padding: 12px 16px;
-            border-radius: 12px;
-        }
-        .mobile-nav a:hover { color: var(--primary); background: var(--primary-soft); }
-        .mobile-nav .nav-cta { display: inline-block; margin-top: 10px; width: 100%; text-align: center; }
-        .mobile-close {
-            position: absolute;
-            top: 24px; right: 24px;
-            top: calc(24px + var(--safe-top));
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            transition: background 0.2s;
-        }
-        .mobile-close:active { background: rgba(0,0,0,0.04); }
-        .mobile-close svg { width: 24px; height: 24px; color: var(--text); }
 
-        /* ===== FLOATING CALL BUTTON ===== */
-        .fab-call {
+        /* Mobile */
+        @media (max-width: 900px) {
+            .hero-container,
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid,
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-card {
+                left: 10px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .about-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Success message */
+        .success-message {
             display: none;
-            position: fixed;
-            bottom: 24px;
-            left: 24px;
-            bottom: calc(24px + var(--safe-bottom));
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(91, 154, 154, 0.3);
-            z-index: 998;
-            text-decoration: none;
-            -webkit-appearance: none;
-            appearance: none;
-            animation: scaleIn 0.5s ease;
+            background: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
         }
-        .fab-call svg { width: 24px; height: 24px; }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; gap: 50px; }
-            .hero-text h1 { margin: 0 auto 20px; }
-            .hero-subtitle { margin: 0 auto 32px; }
-            .hero-badges { justify-content: center; }
-            .hero-cta-group { justify-content: center; }
-            .hero-visual { order: -1; }
-            .hero-card { margin: 0 auto; }
-            .about-grid { grid-template-columns: 1fr; gap: 50px; }
-            .about-visual { max-width: 460px; margin: 0 auto; width: 100%; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .booking-inner { grid-template-columns: 1fr; gap: 40px; }
-            .why-grid { grid-template-columns: repeat(2, 1fr); }
-            .contacts-inner { grid-template-columns: 1fr; }
-            .map-wrap iframe { min-height: 320px; }
-            .footer-inner { grid-template-columns: 1fr 1fr; gap: 30px; }
-            .hero-floating-tag { display: none; }
+        .success-message h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: flex; }
-            .hero { padding: 100px 5% 60px; padding-top: calc(100px + var(--safe-top)); }
-            section { padding: 60px 5%; }
-            .services-grid { grid-template-columns: 1fr; }
-            .why-grid { grid-template-columns: 1fr; }
-            .about-features { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-inner { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .footer-brand p { max-width: 100%; margin: 0 auto; }
-            .footer-phone { align-items: center; }
-            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-            .about-experience { right: 8px; bottom: -14px; padding: 18px 22px; }
-            .about-experience .num { font-size: 2rem; }
-            .booking-form-wrap { padding: 28px 22px; }
-            .hero-cta-group { flex-direction: column; width: 100%; }
-            .hero-cta-group .btn { width: 100%; }
-            .fab-call { display: flex; }
-            .map-wrap iframe { min-height: 280px; }
-            .contact-card { padding: 20px; }
-            .section-header { margin-bottom: 36px; }
-        }
-        @media (max-width: 380px) {
-            .hero-text h1 { font-size: 1.8rem; }
-            .hero-card { padding: 24px 18px; }
-            .about-experience { padding: 14px 18px; }
-            .about-experience .num { font-size: 1.8rem; }
-            .btn { padding: 14px 24px; font-size: 0.9rem; }
+
+        .success-message p {
+            color: var(--text-light);
         }
     </style>
-<base target="_blank">
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-    <a href="#" class="nav-logo">
-        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z"/><path d="M16 10v6l4 2"/><path d="M12 20c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z"/></svg>
-        Кабинет подологии
-    </a>
-    <ul class="nav-links">
-        <li><a href="#about">О нас</a></li>
-        <li><a href="#services">Услуги</a></li>
-        <li><a href="#booking">Запись</a></li>
-        <li><a href="#contacts">Контакты</a></li>
-        <li><a href="#booking" class="nav-cta">Записаться</a></li>
-    </ul>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню"><span></span><span></span><span></span></button>
-</nav>
-
-<div class="mobile-overlay" id="mobileOverlay"></div>
-<div class="mobile-nav" id="mobileNav">
-    <button class="mobile-close" id="mobileClose" aria-label="Закрыть">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <ul>
-        <li><a href="#about" class="mobile-link">О нас</a></li>
-        <li><a href="#services" class="mobile-link">Услуги</a></li>
-        <li><a href="#booking" class="mobile-link">Запись</a></li>
-        <li><a href="#contacts" class="mobile-link">Контакты</a></li>
-        <li><a href="#booking" class="nav-cta mobile-link">Записаться онлайн</a></li>
-    </ul>
-</div>
-
-<!-- Hero -->
-<section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-blob blob-1"></div>
-    <div class="hero-blob blob-2"></div>
-    <div class="hero-blob blob-3"></div>
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1>Профессиональный уход за <span>стопами и ногтями</span></h1>
-            <p class="hero-subtitle">Кабинет подологии в Минске. Лечение вросших ногтей, грибка, мозолей, трещин. Медицинский педикюр и консультация подолога.</p>
-            <div class="hero-badges">
-                <div class="badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    Безопасно
-                </div>
-                <div class="badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    Стерильно
-                </div>
-                <div class="badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    Эффективно
-                </div>
+    <header>
+        <nav>
+            <div class="logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C8.5 2 6 4.5 6 7c0 1.5.5 2.5 1.5 3.5S9 12 9 13.5c0 2-1.5 3.5-3 5C4.5 20 5 22 7 22c1.5 0 2.5-1 3-2.5.5 1.5 1.5 2.5 3 2.5s2.5-1 3-2.5c.5 1.5 1.5 2.5 3 2.5 2 0 2.5-2 1.5-3.5-1.5-1.5-3-3-3-5 0-1.5.5-2.5 1.5-3.5S18 8.5 18 7c0-2.5-2.5-5-6-5z"/>
+                </svg>
+                Кабинет подологии
             </div>
-            <div class="hero-cta-group">
-                <a href="#booking" class="btn btn-primary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    Записаться онлайн
-                </a>
-                <a href="https://t.me/+375291251085" class="btn btn-telegram" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Написать в Telegram
-                </a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-card animate-scale">
-                <div class="hero-card-header">
-                    <div class="hero-avatar">А</div>
-                    <div>
-                        <div class="hero-card-title">Анастасия</div>
-                        <div class="hero-card-subtitle">Подолог, медсестра</div>
-                    </div>
-                </div>
-                <div class="hero-card-info">
-                    <div class="info-row">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        <span>г. Минск, ул. Маяковского, 111<br>3 этаж, каб. 301</span>
-                    </div>
-                    <div class="info-row">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <div>
-                            <a href="tel:+375291251085">+375 29 125-10-85</a> — Анастасия<br>
-                            <a href="tel:+375447323255">+375 44 732-32-55</a> — Елена<br>
-                            <a href="tel:+375297669948">+375 29 766-99-48</a>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Пн–Пт: 9:00 – 20:00<br>Сб: 10:00 – 16:00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-floating-tag tag-1">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Специалисты с мед. образованием
-            </div>
-            <div class="hero-floating-tag tag-2">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Индивидуальный подход
-            </div>
-            <div class="hero-floating-tag tag-3">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Возвращаем комфорт
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- About -->
-<section class="about" id="about">
-    <div class="about-grid">
-        <div class="about-visual animate-left">
-            <div class="about-img-frame">
-                <div class="about-img-content">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="3"/></svg>
-                    <p>Кабинет подологии<br>«Подолог Анастасия»</p>
-                </div>
-            </div>
-            <div class="about-experience">
-                <div class="num">5+</div>
-                <div class="label">лет опыта</div>
-            </div>
-        </div>
-        <div class="about-text animate-right">
-            <span class="section-label">О специалисте</span>
-            <h2 class="section-title" style="text-align:left; margin-bottom: 16px;">Специалисты с медицинским образованием</h2>
-            <p>Анастасия — сертифицированный подолог с медицинским образованием. В кабинете используется только современное оборудование и одноразовые расходные материалы.</p>
-            <p>Каждому клиенту подбирается индивидуальный план лечения. Работа ведётся в строгом соответствии с санитарно-эпидемиологическими нормами.</p>
-            <div class="about-features">
-                <div class="about-feature">
-                    <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div class="about-feature-text">
-                        <h4>Сертификаты</h4>
-                        <p>Все необходимые документы</p>
-                    </div>
-                </div>
-                <div class="about-feature">
-                    <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div class="about-feature-text">
-                        <h4>Стерильность</h4>
-                        <p>Одноразовые материалы</p>
-                    </div>
-                </div>
-                <div class="about-feature">
-                    <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div class="about-feature-text">
-                        <h4>Удобное время</h4>
-                        <p>Гибкий график работы</p>
-                    </div>
-                </div>
-                <div class="about-feature">
-                    <div class="about-feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div class="about-feature-text">
-                        <h4>Забота</h4>
-                        <p>Внимание к каждому</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Services -->
-<section class="services" id="services">
-    <div class="section-header animate">
-        <span class="section-label">Услуги</span>
-        <h2 class="section-title">Помогаем при проблемах</h2>
-        <p class="section-desc">Профессиональный уход за стопами с использованием современных методик</p>
-    </div>
-    <div class="services-grid">
-        <div class="service-card animate delay-1">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
-            </div>
-            <h3>Вросший ноготь</h3>
-            <p>Безболезненная коррекция вросшего ногтя с использованием современных техник. Предотвращение рецидивов.</p>
-            <div class="service-price">от 35 BYN</div>
-        </div>
-        <div class="service-card animate delay-2">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Грибок ногтей</h3>
-            <p>Комплексная терапия онихомикоза с применением аппаратных методов и специальных препаратов.</p>
-            <div class="service-price">от 40 BYN</div>
-        </div>
-        <div class="service-card animate delay-3">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-            </div>
-            <h3>Мозоли и натоптыши</h3>
-            <p>Безопасное аппаратное удаление мозолей, натоптышей и сухих мозолей без боли.</p>
-            <div class="service-price">от 30 BYN</div>
-        </div>
-        <div class="service-card animate delay-1">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <h3>Медицинский педикюр</h3>
-            <p>Профессиональный уход за ногтями и кожей стоп без покрытия. Идеально при диабете.</p>
-            <div class="service-price">от 45 BYN</div>
-        </div>
-        <div class="service-card animate delay-2">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-            <h3>Трещины на пятках</h3>
-            <p>Лечение глубоких и поверхностных трещин. Восстановление эластичности кожи.</p>
-            <div class="service-price">от 35 BYN</div>
-        </div>
-        <div class="service-card animate delay-3">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <h3>Консультация подолога</h3>
-            <p>Осмотр, диагностика состояния стоп и ногтей, рекомендации по лечению и уходу.</p>
-            <div class="service-price">от 25 BYN</div>
-        </div>
-    </div>
-</section>
-
-<!-- Why Us -->
-<section class="why-us" id="why">
-    <div class="section-header animate">
-        <span class="section-label">Почему мы</span>
-        <h2 class="section-title">Мы возвращаем комфорт и здоровье вашим стопам</h2>
-        <p class="section-desc">Доверьте заботу о своих ногах профессионалам</p>
-    </div>
-    <div class="why-grid">
-        <div class="why-card animate delay-1">
-            <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3>Мед. образование</h3>
-            <p>Сертифицированные специалисты с медицинским образованием</p>
-        </div>
-        <div class="why-card animate delay-2">
-            <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3>Стерильность</h3>
-            <p>Одноразовые материалы и тщательная дезинфекция</p>
-        </div>
-        <div class="why-card animate delay-3">
-            <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3>Удобная запись</h3>
-            <p>Онлайн-запись в любое время</p>
-        </div>
-        <div class="why-card animate delay-4">
-            <div class="why-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3>Индивидуальный подход</h3>
-            <p>Персональный план лечения для каждого клиента</p>
-        </div>
-    </div>
-</section>
-
-<!-- Booking -->
-<section class="booking" id="booking">
-    <div class="booking-blob booking-blob-1"></div>
-    <div class="booking-blob booking-blob-2"></div>
-    <div class="booking-inner">
-        <div class="booking-info animate-left">
-            <span class="section-label">Запись на приём</span>
-            <h2 class="section-title">Запишитесь онлайн за минуту</h2>
-            <p class="section-desc">Выберите удобную дату и время, укажите тип процедуры — мы свяжемся с вами для подтверждения записи.</p>
-            <div class="booking-contacts">
-                <a href="tel:+375291251085" class="booking-contact">
-                    <div class="booking-contact-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                    <div class="booking-contact-text">
-                        <h4>Анастасия</h4>
-                        <span>+375 29 125-10-85</span>
-                    </div>
-                </a>
-                <a href="tel:+375447323255" class="booking-contact">
-                    <div class="booking-contact-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                    <div class="booking-contact-text">
-                        <h4>Елена</h4>
-                        <span>+375 44 732-32-55</span>
-                    </div>
-                </a>
-                <div class="booking-contact" style="cursor:default;">
-                    <div class="booking-contact-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <div class="booking-contact-text">
-                        <h4>Адрес</h4>
-                        <span>Минск, ул. Маяковского, 111, каб. 301</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="booking-form-wrap animate-right">
-            <div id="bookingFormContainer">
-                <h3>Онлайн-запись</h3>
-                <p>Заполните форму — мы перезвоним для подтверждения</p>
-                <div class="form-error" id="formError"></div>
-                <form id="bookingForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Ваше имя *</label>
-                            <input type="text" id="name" name="name" placeholder="Например, Анна" required autocomplete="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Телефон *</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+375 (__) ___-__-__" required autocomplete="tel">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="service">Услуга *</label>
-                            <select id="service" name="service" required>
-                                <option value="" disabled selected>Выберите услугу</option>
-                                <option value="Вросший ноготь">Вросший ноготь</option>
-                                <option value="Грибок ногтей">Грибок ногтей</option>
-                                <option value="Мозоли и натоптыши">Мозоли и натоптыши</option>
-                                <option value="Медицинский педикюр">Медицинский педикюр</option>
-                                <option value="Трещины на пятках">Трещины на пятках</option>
-                                <option value="Консультация подолога">Консультация подолога</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Желаемая дата *</label>
-                            <input type="date" id="date" name="date" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="notes">Комментарий</label>
-                        <textarea id="notes" name="notes" placeholder="Опишите проблему или удобное время..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        Записаться на приём
-                    </button>
-                </form>
-            </div>
-            <div class="form-success" id="formSuccess">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <h3>Заявка отправлена!</h3>
-                <p>Спасибо за запись. Мы свяжемся с вами в ближайшее время для подтверждения приёма.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contacts -->
-<section class="contacts" id="contacts">
-    <div class="section-header animate">
-        <span class="section-label">Контакты</span>
-        <h2 class="section-title">Приходите в гости</h2>
-        <p class="section-desc">Удобное расположение в центре Минска</p>
-    </div>
-    <div class="contacts-inner">
-        <div class="contacts-info">
-            <div class="contact-card animate-left">
-                <div class="contact-card-header">
-                    <div class="contact-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <h4>Адрес</h4>
-                </div>
-                <div class="contact-card-body">
-                    <strong>г. Минск, ул. Маяковского, 111</strong><br>
-                    3 этаж, кабинет 301<br>
-                    <span style="font-size:0.8rem; color:var(--text-light);">Вход со двора, домофон 301</span>
-                </div>
-            </div>
-            <div class="contact-card animate delay-1">
-                <div class="contact-card-header">
-                    <div class="contact-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                    <h4>Телефоны</h4>
-                </div>
-                <div class="contact-card-body">
-                    <a href="tel:+375291251085">+375 29 125-10-85</a> — Анастасия<br>
-                    <a href="tel:+375447323255">+375 44 732-32-55</a> — Елена<br>
-                    <a href="tel:+375297669948">+375 29 766-99-48</a>
-                </div>
-            </div>
-            <div class="contact-card animate delay-2">
-                <div class="contact-card-header">
-                    <div class="contact-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <h4>Режим работы</h4>
-                </div>
-                <div class="contact-card-body">
-                    <strong>Понедельник – Пятница:</strong> 9:00 – 20:00<br>
-                    <strong>Суббота:</strong> 10:00 – 16:00<br>
-                    <strong>Воскресенье:</strong> выходной
-                </div>
-            </div>
-        </div>
-        <div class="map-wrap animate-right">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.6!2d27.55!3d53.90!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfe0c0e1b0a1%3A0x0!2z0JzQuNC90YHQug!5e0!3m2!1sru!2sby!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <div class="map-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Минск, ул. Маяковского, 111 — каб. 301, 3 этаж</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <h3>Кабинет подологии</h3>
-            <p>Профессиональный уход за стопами и ногтями в Минске. Мы возвращаем комфорт и здоровье вашим стопам.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Навигация</h4>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#booking">Запись</a></li>
                 <li><a href="#contacts">Контакты</a></li>
             </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Услуги</h4>
-            <ul>
-                <li><a href="#services">Вросший ноготь</a></li>
-                <li><a href="#services">Грибок ногтей</a></li>
-                <li><a href="#services">Медицинский педикюр</a></li>
-                <li><a href="#services">Консультация</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Связаться</h4>
-            <div class="footer-phone">
-                <a href="tel:+375291251085">+375 29 125-10-85</a>
-                <span>Анастасия</span>
-                <a href="tel:+375447323255">+375 44 732-32-55</a>
-                <span>Елена</span>
+            <a href="#booking" class="btn">Записаться</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Профессиональный <span>уход за стопами</span> и ногтями</h1>
+                <p>Кабинет подологии в Минске. Лечение вросших ногтей, грибка, мозолей, трещин. Медицинский педикюр и консультация подолога.</p>
+                <div class="hero-badges">
+                    <div class="badge">
+                        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                        Безопасно
+                    </div>
+                    <div class="badge">
+                        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                        Стерильно
+                    </div>
+                    <div class="badge">
+                        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                        Эффективно
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#booking" class="btn">Записаться онлайн</a>
+                    <a href="https://t.me/+375291251085" class="btn btn-outline" target="_blank">Написать в Telegram</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&h=500&fit=crop" alt="Подолог за работой">
+                <div class="hero-card">
+                    <h3>5+</h3>
+                    <p>лет опыта</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <span>© 2026 Кабинет подологии. Все права защищены.</span>
-        <span>Минск, ул. Маяковского, 111</span>
-    </div>
-</footer>
+    </section>
 
-<!-- Floating buttons -->
-<a href="tel:+375291251085" class="fab-call" id="fabCall" aria-label="Позвонить">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-</a>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>О специалисте</h2>
+                <p>Специалисты с медицинским образованием</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto 3rem; text-align: center; color: var(--text-light);">
+                <p>Анастасия — сертифицированный подолог с медицинским образованием. В кабинете используется только современное оборудование и одноразовые расходные материалы. Каждому клиенту подбирается индивидуальный план лечения в строгом соответствии с санитарно-эпидемиологическими нормами.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="icon">📜</div>
+                    <h3>Сертификаты</h3>
+                    <p>Все необходимые документы</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🧼</div>
+                    <h3>Стерильность</h3>
+                    <p>Одноразовые материалы</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🕐</div>
+                    <h3>Удобное время</h3>
+                    <p>Гибкий график работы</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">💚</div>
+                    <h3>Забота</h3>
+                    <p>Внимание к каждому</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<button class="scroll-top" id="scrollTop" aria-label="Наверх">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Услуги</h2>
+                <p>Помогаем при:</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🦶 Вросший ноготь</h3>
+                    <p>Безболезненная коррекция вросшего ногтя с использованием современных техник. Предотвращение рецидивов.</p>
+                    <div class="price">от 35 BYN</div>
+                </div>
+                <div class="service-card">
+                    <h3>🔬 Грибок ногтей</h3>
+                    <p>Комплексная терапия онихомикоза с применением аппаратных методов и специальных препаратов.</p>
+                    <div class="price">от 40 BYN</div>
+                </div>
+                <div class="service-card">
+                    <h3>✨ Мозоли и натоптыши</h3>
+                    <p>Безопасное аппаратное удаление мозолей, натоптышей и сухих мозолей без боли.</p>
+                    <div class="price">от 30 BYN</div>
+                </div>
+                <div class="service-card">
+                    <h3>🏥 Медицинский педикюр</h3>
+                    <p>Профессиональный уход за ногтями и кожей стоп без покрытия. Идеально при диабете.</p>
+                    <div class="price">от 45 BYN</div>
+                </div>
+                <div class="service-card">
+                    <h3>🩹 Трещины на пятках</h3>
+                    <p>Лечение глубоких и поверхностных трещин. Восстановление эластичности кожи.</p>
+                    <div class="price">от 35 BYN</div>
+                </div>
+                <div class="service-card">
+                    <h3>👩‍⚕️ Консультация подолога</h3>
+                    <p>Осмотр, диагностика состояния стоп и ногтей, рекомендации по лечению и уходу.</p>
+                    <div class="price">от 25 BYN</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-// ============================================================
-// НАСТРОЙКА ОТПРАВКИ ФОРМ
-// ============================================================
-// 1. TELEGRAM:
-//    - Напишите @BotFather в Telegram, создайте бота, получите TOKEN
-//    - Напишите боту любое сообщение, затем откройте в браузере:
-//      https://api.telegram.org/botВАШ_ТОКЕН/getUpdates
-//    - Найдите "chat":{"id":123456789 — это ваш CHAT_ID
-//    - Вставьте значения ниже:
-const TELEGRAM_BOT_TOKEN = '';
-const TELEGRAM_CHAT_ID   = '';
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Почему выбирают нас</h2>
+                <p>Гарантия качества и безопасности</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon">🎓</div>
+                    <h3>Мед. образование</h3>
+                    <p>Сертифицированные специалисты</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">✅</div>
+                    <h3>Стерильность</h3>
+                    <p>Одноразовые материалы</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📅</div>
+                    <h3>Удобная запись</h3>
+                    <p>Онлайн в любое время</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🤝</div>
+                    <h3>Индивидуальный подход</h3>
+                    <p>Персональный план лечения</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// 2. EMAIL (через Formspree):
-//    - Зарегистрируйтесь на https://formspree.io
-//    - Создайте новую форму, получите endpoint вида: https://formspree.io/f/XXXXXXXX
-//    - Вставьте ниже:
-const FORMSPREE_ENDPOINT = '';
+    <section class="booking" id="booking">
+        <div class="container">
+            <div class="booking-container">
+                <div class="booking-info" id="contacts">
+                    <h2>Запишитесь онлайн за минуту</h2>
+                    <p>Выберите удобную дату и время, укажите тип процедуры — мы свяжемся с вами для подтверждения записи.</p>
+                    
+                    <div class="contact-item">
+                        <div class="icon">📍</div>
+                        <div>
+                            <strong>Адрес</strong>
+                            <span>г. Минск, ул. Маяковского, 111<br>3 этаж, каб. 301</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">🕐</div>
+                        <div>
+                            <strong>Режим работы</strong>
+                            <span>Пн–Пт: 9:00 – 20:00<br>Сб: 10:00 – 16:00</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📞</div>
+                        <div>
+                            <strong>Телефон</strong>
+                            <span><a href="tel:+375291251085" style="color: var(--primary); text-decoration: none;">+375 29 125 10 85</a> — Анастасия</span>
+                        </div>
+                    </div>
+                </div>
 
-// ============================================================
+                <div class="booking-form" id="form-container">
+                    <h3>📝 Онлайн-запись</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem; font-size: 0.95rem;">Заполните форму — мы перезвоним для подтверждения</p>
+                    
+                    <form id="bookingForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label>Ваше имя</label>
+                            <input type="text" placeholder="Анастасия" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Телефон</label>
+                            <input type="tel" placeholder="+375 (29) 125-10-85" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Услуга</label>
+                            <select required>
+                                <option value="">Выберите услугу</option>
+                                <option>Вросший ноготь</option>
+                                <option>Грибок ногтей</option>
+                                <option>Мозоли и натоптыши</option>
+                                <option>Медицинский педикюр</option>
+                                <option>Трещины на пятках</option>
+                                <option>Консультация подолога</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Комментарий</label>
+                            <textarea placeholder="Опишите проблему или удобное время..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">Написать / Записаться</button>
+                    </form>
 
-// Phone mask
-const phoneInput = document.getElementById('phone');
-phoneInput.addEventListener('input', function(e) {
-    let val = e.target.value.replace(/\D/g, '');
-    if (val.startsWith('375')) val = val.slice(3);
-    let formatted = '+375';
-    if (val.length > 0) formatted += ' (' + val.substring(0, 2);
-    if (val.length >= 2) formatted += ')';
-    if (val.length > 2) formatted += ' ' + val.substring(2, 5);
-    if (val.length > 5) formatted += '-' + val.substring(5, 7);
-    if (val.length > 7) formatted += '-' + val.substring(7, 9);
-    e.target.value = formatted;
-});
+                    <div class="success-message" id="successMessage">
+                        <h3>✅ Заявка отправлена!</h3>
+                        <p>Спасибо за запись. Мы свяжемся с вами в ближайшее время для подтверждения приёма.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Set min date to today
-const dateInput = document.getElementById('date');
-const today = new Date().toISOString().split('T')[0];
-dateInput.setAttribute('min', today);
+    <footer>
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 28px; height: 28px;">
+                <path d="M12 2C8.5 2 6 4.5 6 7c0 1.5.5 2.5 1.5 3.5S9 12 9 13.5c0 2-1.5 3.5-3 5C4.5 20 5 22 7 22c1.5 0 2.5-1 3-2.5.5 1.5 1.5 2.5 3 2.5s2.5-1 3-2.5c.5 1.5 1.5 2.5 3 2.5 2 0 2.5-2 1.5-3.5-1.5-1.5-3-3-3-5 0-1.5.5-2.5 1.5-3.5S18 8.5 18 7c0-2.5-2.5-5-6-5z"/>
+            </svg>
+            Кабинет подологии «Подолог Анастасия»
+        </div>
+        <p>© 2026 Кабинет подологии Анастасии. Все права защищены.</p>
+    </footer>
 
-// Scroll animations
-const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -40px 0px' };
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-}, observerOptions);
-document.querySelectorAll('.animate, .animate-left, .animate-right, .animate-scale').forEach(el => observer.observe(el));
-
-// Navbar scroll effect
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-});
-
-// Mobile menu
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileClose = document.getElementById('mobileClose');
-const mobileNav = document.getElementById('mobileNav');
-const mobileOverlay = document.getElementById('mobileOverlay');
-const mobileLinks = document.querySelectorAll('.mobile-link');
-
-function openMenu() {
-    mobileNav.classList.add('active');
-    mobileOverlay.classList.add('active');
-    mobileMenuBtn.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-    mobileNav.classList.remove('active');
-    mobileOverlay.classList.remove('active');
-    mobileMenuBtn.classList.remove('active');
-    document.body.style.overflow = '';
-}
-mobileMenuBtn.addEventListener('click', openMenu);
-mobileClose.addEventListener('click', closeMenu);
-mobileOverlay.addEventListener('click', closeMenu);
-mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-// Scroll to top
-const scrollTop = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 600) scrollTop.classList.add('visible');
-    else scrollTop.classList.remove('visible');
-});
-scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            const offset = 80;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
         }
-    });
-});
 
-// Booking form submission
-const bookingForm = document.getElementById('bookingForm');
-const formSuccess = document.getElementById('formSuccess');
-const formContainer = document.getElementById('bookingFormContainer');
-const formError = document.getElementById('formError');
-const submitBtn = document.getElementById('submitBtn');
-
-bookingForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    formError.style.display = 'none';
-
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-
-    // Validate phone
-    const phoneDigits = data.phone.replace(/\D/g, '');
-    if (phoneDigits.length < 12) {
-        formError.textContent = 'Пожалуйста, введите корректный номер телефона';
-        formError.style.display = 'block';
-        phoneInput.focus();
-        phoneInput.parentElement.style.animation = 'shake 0.5s ease';
-        setTimeout(() => phoneInput.parentElement.style.animation = '', 500);
-        return;
-    }
-
-    const originalHTML = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="animation:spin 1s linear infinite"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Отправка...';
-    submitBtn.disabled = true;
-
-    let telegramOk = false;
-    let formspreeOk = false;
-
-    // === ОТПРАВКА В TELEGRAM ===
-    if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
-        const text = `📋 <b>Новая запись на приём</b>
-
-👤 <b>Имя:</b> ${escapeHtml(data.name)}
-📞 <b>Телефон:</b> ${escapeHtml(data.phone)}
-📋 <b>Услуга:</b> ${escapeHtml(data.service)}
-📅 <b>Дата:</b> ${escapeHtml(data.date)}
-💬 <b>Комментарий:</b> ${data.notes ? escapeHtml(data.notes) : '—'}
-
-🕐 ${new Date().toLocaleString('ru-RU')}`;
-        try {
-            const resp = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text, parse_mode: 'HTML' })
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
-            const result = await resp.json();
-            if (result.ok) telegramOk = true;
-        } catch (err) {}
-    }
-
-    // === ОТПРАВКА НА EMAIL ===
-    if (FORMSPREE_ENDPOINT) {
-        try {
-            const resp = await fetch(FORMSPREE_ENDPOINT, {
-                method: 'POST',
-                headers: { 'Accept': 'application/json' },
-                body: formData
-            });
-            if (resp.ok) formspreeOk = true;
-        } catch (err) {}
-    }
-
-    // === УСПЕХ ===
-    if (telegramOk || formspreeOk) {
-        formContainer.style.display = 'none';
-        formSuccess.style.display = 'block';
-        formSuccess.style.animation = 'fadeUp 0.6s ease forwards';
-        setTimeout(() => {
-            bookingForm.reset();
-            formContainer.style.display = 'block';
-            formSuccess.style.display = 'none';
-            submitBtn.innerHTML = originalHTML;
-            submitBtn.disabled = false;
-        }, 8000);
-        return;
-    }
-
-    // === FALLBACK: открываем Telegram ===
-    submitBtn.innerHTML = originalHTML;
-    submitBtn.disabled = false;
-
-    const msg = `Здравствуйте! Хочу записаться на приём.
-
-👤 Имя: ${data.name}
-📞 Телефон: ${data.phone}
-📋 Услуга: ${data.service}
-📅 Дата: ${data.date}${data.notes ? '\n💬 Комментарий: ' + data.notes : ''}`;
-
-    const tgUrl = 'https://t.me/+375291251085?text=' + encodeURIComponent(msg);
-
-    formContainer.style.display = 'none';
-    formSuccess.style.display = 'block';
-    formSuccess.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <h3>Почти готово!</h3>
-        <p style="margin-bottom:20px">Telegram открылся с готовым сообщением.<br>Нажмите «Отправить» — и мы свяжемся с вами!</p>
-        <a href="${tgUrl}" target="_blank" class="btn btn-telegram" style="display:inline-flex; margin-bottom:12px">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            Открыть Telegram
-        </a>
-        <br>
-        <button onclick="resetForm()" style="background:none; border:none; color:var(--text-light); font-size:0.85rem; cursor:pointer; text-decoration:underline; font-family:inherit">← Вернуться к форме</button>
-    `;
-    formSuccess.style.animation = 'fadeUp 0.6s ease forwards';
-    setTimeout(() => { window.open(tgUrl, '_blank'); }, 600);
-});
-
-function resetForm() {
-    bookingForm.reset();
-    formContainer.style.display = 'block';
-    formSuccess.style.display = 'none';
-    formSuccess.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <h3>Заявка отправлена!</h3>
-        <p>Спасибо за запись. Мы свяжемся с вами в ближайшее время для подтверждения приёма.</p>
-    `;
-}
-
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
-
-// Hide FAB call on scroll down
-let lastScroll = 0;
-const fabCall = document.getElementById('fabCall');
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > lastScroll && currentScroll > 300) {
-        fabCall.style.transform = 'translateY(80px)';
-    } else {
-        fabCall.style.transform = 'translateY(0)';
-    }
-    lastScroll = currentScroll;
-});
-</script>
+        });
+    </script>
 
 </body>
 </html>
